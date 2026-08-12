@@ -43,17 +43,17 @@ def generate_pdf_report(
     # Title Header
     pdf.set_font("Helvetica", "B", 15)
     pdf.set_text_color(15, 23, 42)
-    pdf.cell(0, 10, "ADVANCED AI MEDICAL INTELLIGENCE PLATFORM", align="C", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 10, "ADVANCED AI MEDICAL INTELLIGENCE PLATFORM", ln=1, align="C")
 
     pdf.set_font("Helvetica", "B", 11)
     pdf.set_text_color(37, 99, 235)
-    pdf.cell(0, 8, "AI-ASSISTED CHEST X-RAY DECISION SUPPORT REPORT", align="C", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 8, "AI-ASSISTED CHEST X-RAY DECISION SUPPORT REPORT", ln=1, align="C")
     pdf.ln(6)
 
     # Clinical Summary Section
     pdf.set_font("Helvetica", "B", 12)
     pdf.set_text_color(15, 23, 42)
-    pdf.cell(0, 8, "CLINICAL SUMMARY:", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 8, "CLINICAL SUMMARY:", ln=1)
 
     pdf.set_font("Helvetica", "", 10)
     pdf.set_text_color(51, 65, 85)
@@ -63,23 +63,23 @@ def generate_pdf_report(
     # Key Findings Section
     pdf.set_font("Helvetica", "B", 12)
     pdf.set_text_color(15, 23, 42)
-    pdf.cell(0, 8, "KEY FINDINGS:", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 8, "KEY FINDINGS:", ln=1)
 
     pdf.set_font("Helvetica", "", 10)
     pdf.set_text_color(51, 65, 85)
     for f in findings:
-        pdf.cell(0, 6, f"- {f}", new_x="LMARGIN", new_y="NEXT")
+        pdf.cell(0, 6, f"- {f}", ln=1)
     pdf.ln(5)
 
     # Recommendations Section
     pdf.set_font("Helvetica", "B", 12)
     pdf.set_text_color(15, 23, 42)
-    pdf.cell(0, 8, "RECOMMENDATIONS:", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 8, "RECOMMENDATIONS:", ln=1)
 
     pdf.set_font("Helvetica", "", 10)
     pdf.set_text_color(51, 65, 85)
     for r in recommendations:
-        pdf.cell(0, 6, f"- {r}", new_x="LMARGIN", new_y="NEXT")
+        pdf.cell(0, 6, f"- {r}", ln=1)
     pdf.ln(8)
 
     # Disclaimer Footer
@@ -91,7 +91,11 @@ def generate_pdf_report(
         "Disclaimer: This AI-generated report is for decision support only and should not replace professional medical diagnosis.",
     )
 
-    return bytes(pdf.output())
+    output_res = pdf.output()
+    if isinstance(output_res, (str, bytearray)):
+        return bytes(output_res, encoding="latin1") if isinstance(output_res, str) else bytes(output_res)
+    return bytes(output_res)
+
 
 
 def render_sidebar() -> str:
