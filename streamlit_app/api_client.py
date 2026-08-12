@@ -64,10 +64,17 @@ class APIClient:
             pass
 
         # In-process Fallback for Streamlit Cloud deployment
+        from app.database.database import SessionLocal, init_db
         from app.services.prediction_service import PredictionService
 
-        service = PredictionService()
-        return service.analyze(path)
+        init_db()
+        db = SessionLocal()
+        try:
+            service = PredictionService()
+            return service.analyze(path, db=db)
+        finally:
+            db.close()
+
 
     def get_history(
         self,

@@ -41,7 +41,7 @@ class PredictionService:
     def analyze(
         self,
         image_path: str | Path,
-        db: Session,
+        db: Session | None = None,
     ) -> dict:
         """
         Run complete medical image analysis.
@@ -106,20 +106,23 @@ class PredictionService:
 
         report_data = report.model_dump()
 
-        prediction_record = create_prediction(
-            db,
-            image_filename=image_path.name,
-            image_path=str(image_path),
-            predicted_class=prediction,
-            confidence=confidence,
-            model_version=self.settings.app_version,
-            gradcam_path=str(xai_path),
-            generated_report=report.model_dump_json(),
-            status="completed",
-        )
+        prediction_id = 1
+        if db is not None:
+            prediction_record = create_prediction(
+                db,
+                image_filename=image_path.name,
+                image_path=str(image_path),
+                predicted_class=prediction,
+                confidence=confidence,
+                model_version=self.settings.app_version,
+                gradcam_path=str(xai_path),
+                generated_report=report.model_dump_json(),
+                status="completed",
+            )
+            prediction_id = prediction_record.id
 
         return {
-            "prediction_id": prediction_record.id,
+            "prediction_id": prediction_id,
             "prediction": prediction,
             "confidence": confidence,
             "normal_probability": normal_probability,
@@ -128,3 +131,4 @@ class PredictionService:
             "xai_path": str(xai_path),
             "report": report_data,
         }
+
