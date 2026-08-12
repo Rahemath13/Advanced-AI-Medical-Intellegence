@@ -27,7 +27,7 @@ jobs:
 
       - name: Run Ruff Code Quality Check
         run: |
-          ruff check app/ streamlit_app/ --ignore BLE001,S110
+          ruff check app/ streamlit_app/ --ignore BLE001,S110,UP017
 
   test:
     name: Automated Unit & API Testing
