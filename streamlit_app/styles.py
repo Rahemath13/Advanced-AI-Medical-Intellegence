@@ -442,10 +442,15 @@ div.stButton > button:focus {
     color: #38bdf8 !important;
 }
 
-/* STREAMLIT HIDE HEADER/FOOTER CLEANUP */
+# HIDE HEADER/FOOTER CLEANUP
 #MainMenu {visibility: hidden;}
 header {visibility: hidden;}
 footer {visibility: hidden;}
 </style>""",
         unsafe_allow_html=True,
     )
+
+
+def apply_custom_styles() -> None:
+    """Alias for load_css."""
+    load_css()
