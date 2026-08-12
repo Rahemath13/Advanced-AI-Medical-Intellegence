@@ -4,7 +4,11 @@ import textwrap
 from typing import Any
 
 import streamlit as st
-from fpdf import FPDF
+
+try:
+    from fpdf import FPDF
+except ImportError:
+    FPDF = None
 
 from streamlit_app.api_client import APIClient
 
@@ -15,6 +19,17 @@ def generate_pdf_report(
     recommendations: list[str],
 ) -> bytes:
     """Generate professional PDF report bytes using FPDF."""
+    if FPDF is None:
+        text_content = (
+            "ADVANCED AI MEDICAL INTELLIGENCE PLATFORM\n"
+            "AI-ASSISTED CHEST X-RAY DECISION SUPPORT REPORT\n\n"
+            f"CLINICAL SUMMARY:\n{summary}\n\n"
+            "KEY FINDINGS:\n" + "\n".join(f"- {f}" for f in findings) + "\n\n"
+            "RECOMMENDATIONS:\n" + "\n".join(f"- {r}" for r in recommendations) + "\n\n"
+            "Disclaimer: This AI-generated report is for decision support only and should not replace professional medical diagnosis."
+        )
+        return text_content.encode("utf-8")
+
     pdf = FPDF()
     pdf.add_page()
 

@@ -6,9 +6,9 @@ torchvision
 torchaudio
 
 # =========================
-# Computer Vision
+# Computer Vision (Headless for Cloud Platforms)
 # =========================
-opencv-python
+opencv-python-headless
 Pillow
 numpy
 scikit-image
@@ -48,10 +48,11 @@ google-genai
 openai
 
 # =========================
-# Frontend
+# Frontend & PDF
 # =========================
 streamlit>=1.40.0
 fpdf2
+fpdf
 
 # =========================
 # Configuration & Process Management
