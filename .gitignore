@@ -1,0 +1,39 @@
+# ==============================================================================
+# Git Ignore Configuration - Advanced AI Medical Intelligence Platform
+# ==============================================================================
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Byte-compiled / Python Cache Files
+__pycache__/
+*.py[cod]
+*$py.class
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment Files & Secrets
+.env
+.env.local
+
+# Databases
+*.db
+*.sqlite3
+medical_intelligence.db
+medical_ai.db
+
+# Raw Image Datasets & User Uploads
+data/raw/
+data/uploads/
+models/xai/
+
+# IDE & OS Metadata Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

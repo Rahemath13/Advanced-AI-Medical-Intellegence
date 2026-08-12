@@ -1,0 +1,70 @@
+# =========================
+# Deep Learning
+# =========================
+torch
+torchvision
+torchaudio
+
+# =========================
+# Computer Vision
+# =========================
+opencv-python
+Pillow
+numpy
+scikit-image
+
+# =========================
+# Data Science
+# =========================
+pandas
+scikit-learn
+matplotlib
+seaborn
+
+# =========================
+# Explainable AI
+# =========================
+grad-cam
+
+# =========================
+# API
+# =========================
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic
+pydantic-settings
+
+# =========================
+# Database
+# =========================
+sqlalchemy
+
+# =========================
+# LLM
+# =========================
+groq
+google-genai
+openai
+
+# =========================
+# Frontend
+# =========================
+streamlit>=1.40.0
+fpdf2
+
+# =========================
+# Configuration & Process Management
+# =========================
+python-dotenv
+pyyaml
+honcho
+requests>=2.32.0
+
+# =========================
+# Testing & Quality
+# =========================
+pytest
+pytest-cov
+httpx
+ruff

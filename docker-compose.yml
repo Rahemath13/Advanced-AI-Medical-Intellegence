@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  medical-ai-platform:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: advanced_ai_medical_intelligence
+    restart: always
+    ports:
+      - "8000:8000"
+      - "8501:8501"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - MODEL_PATH=models/checkpoints/best_efficientnet_b0.pth
+      - XAI_OUTPUT_DIR=models/xai
+      - UPLOAD_DIR=data/uploads
+      - DATABASE_URL=sqlite:///./medical_ai.db
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./medical_ai.db:/app/medical_ai.db

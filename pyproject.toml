@@ -1,0 +1,7 @@
+[project]
+name = "advanced-ai-medical-intellegence"
+version = "0.1.0"
+description = "Advanced AI Medical Intelligence Platform - Chest X-Ray Pneumonia Detection, Grad-CAM XAI & LLM Reports"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
