@@ -32,6 +32,9 @@ data/raw/
 data/uploads/
 models/xai/
 
+# Lockfiles
+uv.lock
+
 # IDE & OS Metadata Files
 .vscode/
 .idea/
